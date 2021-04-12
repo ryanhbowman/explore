@@ -16,18 +16,18 @@ $(window).resize(function () {
 $( document ).ready(function() {
   document.addEventListener("keydown", function(event) {
     if (event.key === 'e') {
-      $("p").each(function(){
+      $(".container").each(function(){
         $(this).toggleClass('block-it');
       });
     }
   })
 
-  $(".blastable").blast({ delimiter: "sentence" });
+  $(".blastable").blast({ delimiter: "sentence", tag: "span" });
 
   $("#party").click(function(e){
     
     e.preventDefault();
-    $("p").each(function(){
+    $(".container").each(function(){
       $(this).toggleClass('block-it');
     });
   
