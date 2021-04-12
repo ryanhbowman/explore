@@ -1,3 +1,2 @@
-# wordsweekend
-For Words Weekend Festival
-# explore
+#Exploration
+Text explorations
