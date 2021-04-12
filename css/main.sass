@@ -1,0 +1,348 @@
+@import "normalise"
+@import "slick"
+@import "animate"
+
+@font-face
+  font-family: 'English'
+  src: url('../fonts/English1766-ThinWEB.woff') format('woff'),url('../fonts/English1766-ThinWEB.woff2') format('truetype')
+  font-weight: 100
+  font-style: normal
+
+@font-face
+  font-family: 'Grot'
+  src: url('../fonts/Grot10_RegularWEB.woff') format('woff'),url('../fonts/Grot10_RegularWEB.woff2') format('truetype')
+  font-weight: 300
+  font-style: normal
+
+//colors
+$main: #1D1D1B
+$text: #1D1D1B
+
+$green: #314738
+$blue: #015CA7
+$light-blue: #3F638B
+$pink: #EA4C98
+$yellow: #FBB701
+$gray: #F8F7F1
+$menu-height: 90px
+
+*
+  box-sizing: border-box
+body
+  font-family: 'Grot', Georgia
+  font-weight: 100
+  color: $text
+  // letter-spacing: .5px
+  background: white
+
+.block-it .blast
+  display: block
+  margin-bottom: 5px
+  padding: 10px 15px
+  transition: all .3s ease-in-out  
+  &:hover
+    position: relative
+    cursor: pointer
+    // left: -15px
+    // padding: 10px 15px
+    // width: 532px
+    border-radius: 10px
+    box-shadow: 0 0 13px rgba(0,0,0,.15)
+    // background: #f2f2f2
+
+a
+  text-decoration: none
+  color: inherit
+p
+  color: $text
+
+  font-size: 16px
+  line-height: 24px
+  margin: 0 0 1.5em
+  font-weight: 400
+  &:last-child
+    margin-bottom: 0
+  &.big
+    font-size: 32px
+    line-height: 44px
+    letter-spacing: .5px
+    margin: 0
+  &.medium
+    font-size: 24px
+    line-height: 34px
+    letter-spacing: .5px
+    margin: 0
+  &.indent
+    text-indent: 4em
+  &.caption
+    margin-top: 5px
+    font-size: 14px
+    line-height: 19px
+h1, h3, h4, h5, h6
+  font-family: 'Grot', Helvetica, sans-serif
+  font-weight: 400
+  margin: 0
+  padding: 0
+
+h1
+  font-weight: 400
+  font-size: 100px
+
+h2
+  font-size: 26px
+  line-height: 34px
+  letter-spacing: 1px
+  font-weight: 400
+  margin-top: 0
+h3
+  font-size: 20px
+  line-height: 24px
+  letter-spacing: 1px
+  font-weight: 400
+
+h4
+  font-size: 16px
+  line-height: 18px
+
+  letter-spacing: 1px
+  font-weight: 300
+  margin: 0
+  margin-bottom: .25em
+  padding: 0
+  text-transform: uppercase
+h5
+  font-size: 15px
+  // margin: 0 0 10px
+  font-weight: 100
+  line-height: 16px
+  letter-spacing: .8px
+h6
+  letter-spacing: .8px
+  a
+    text-decoration: underline
+
+.button, button[type="submit"], input[type="submit"]
+  display: inline-block
+  font-size: 16px
+  border: 1px $main solid
+  background: $main
+  padding: 1em 2em
+  text-align: center
+  color: white
+  text-decoration: none
+  transition: .7s all
+  cursor: pointer
+  font-family: 'Grot'
+  &.filled
+    background: $main
+    color: white
+    border: none
+  &.small
+    padding: .75em 1.5em
+  &.white
+    background: white
+    color: $main
+    border: none
+  &.yellow-btn.giant
+    background: $yellow
+    color: black
+    border: none
+    padding: 1.25em 2.25em
+    min-width: 300px
+    font-size: 24px
+  &:hover
+    background: rgba(0,0,0,.7)
+
+.container
+  width: 550px
+  padding: 1.5em
+  margin: 0 auto
+  overflow: auto
+  max-height: 600px
+  position: absolute
+  left: 50%
+  top: 50%
+  transform: translateX(-50%) translateY(-50%)
+  &.container--small
+    max-width: 400px
+  &.container--padding
+    padding: 4em 1.5em
+.cf:before,.cf:after
+  content: " "
+  display: table
+.cf:after
+  clear: both
+.cf
+  *zoom: 1
+  &.container--full
+    padding: 0
+    max-width: none
+
+
+
+.fll
+  float: left
+.flr
+  float: right
+.ta-right
+  text-align: right
+.ta-center
+  text-align: center
+.serif
+  font-family: 'English', Georgia
+.normal
+
+  .col
+    float: left
+    margin-right: 4%
+    &.last
+      margin-right: 0
+    &:last-of-type
+      margin-right: 0
+  
+  .one
+    width: 20%
+  .two
+    width: 36%
+  .three
+    width: 60%
+  .half
+    width: 46%
+    margin-right: 8%
+    p.big
+      font-size: 26px
+      line-height: 40px
+    &.centered
+      margin-left: 25%
+.flex
+  display: flex
+  display: -webkit-flex
+  display: -ms-flex
+  display: flex
+  flex-wrap: wrap
+  justify-content: start
+  &.centered
+    justify-content: center
+  &.marginal .one
+    margin-right: 4%
+    &:nth-of-type(4n+4)
+      margin-right: 0
+  img
+    width: 100%
+  .one
+    flex: 1
+    -webkit-flex: 1
+    -ms-flex: 1
+    -webkit-box-flex: 1
+    -moz-box-flex: 1
+    // margin-right: 2%
+    justify-content: space-around
+    &:last-of-type
+      margin-right: 0
+    &.marginal
+      margin-right: 4%
+      &:last-of-type
+        margin-right: 0
+    &.quarter
+      max-width: 21%
+      flex-basis: 21%
+    &.half
+      max-width: 46%
+      flex-basis: 46%
+  .two
+    flex: 2
+    -webkit-flex: 2
+    -ms-flex: 2
+    -webkit-box-flex: 2
+    -moz-box-flex: 2
+    // max-width: 350px
+  .three
+    flex: 3
+    -webkit-flex: 3
+    -ms-flex: 3
+    -webkit-box-flex: 3
+    -moz-box-flex: 3
+    img
+      max-width: 100%
+  &.flex-middle
+    align-items: center
+.list
+  img
+    margin-bottom: 1em
+  .one
+    margin-bottom: 2em
+
+.blue
+  background: $blue
+  padding: 3em 0
+  h1, h2, h3, p, h4
+    color: white
+.light-blue
+  background: $light-blue
+  padding: 3em 0
+  h1, h2, h3, p, h4
+    color: black
+.pink
+  background: $pink
+  padding: 3em 0
+  h1, h2, h3, p, h4
+    color: white
+.gray
+  background: $gray
+  padding: 3em 0
+  h1, h2, h3, p, h4
+    color: black
+.yellow
+  background: $yellow
+  padding: 3em 0
+  h1, h2, h3, p, h4
+    color: black
+
+label
+  display: block
+  margin-bottom: 1em
+input, textarea
+  padding: 14px
+  display: block
+  // width: 100%
+  border: 1px #ccc solid
+  // margin-bottom: 1em
+  font-size: 20px
+  font-family: 'English', Helvetica, sans-serif
+
+.block-center
+  display: block
+  margin: 0 auto
+  text-align: center
+
+.six.center
+  width: 50%
+  margin: 0 auto
+.quotes
+  margin: 2em 0
+  &:first-of-type
+    margin-top: 4em
+.space-group
+  margin-bottom: 2em
+
+.space-group-small
+  margin-bottom: 1em
+.compress
+  margin-bottom: .5em
+.f-left
+  float: left
+.m-r
+  margin-right: .5em
+.justify
+  text-align: justify
+
+
+
+
+
+$h1height: 100px
+$h1adjust: 80px
+
+
+
+  
