@@ -494,7 +494,7 @@ $(window).resize(function () {
 
 function save(){
   // check the new text
-  // $(".container p").blast({ delimiter: "sentence", tag: "span" });
+  $(".container p").blast({ delimiter: "sentence", tag: "span", customClass: "num", generateIndexID: true  });
   var newText2 = $('.text').html();
   // overwrite the old text
   localStorage.setItem('text', newText2);
@@ -511,46 +511,55 @@ function clear(){
 }
 
 function sentence(howmuch) {
-  $(".container p").blast({ delimiter: "sentence", tag: "span",customClass: "num", generateIndexID: true  });
+  
   if($('.text').hasClass('separated')){
-    
+    console.log('yes separation');
     $('.blast').each(function(){
         $(this).css('top','1px');
         $(this).css('left','1px');
     });
-    $('.text').toggleClass('separated');
+    // $('.text').toggleClass('separated');
     $('.text').attr('contenteditable','true');
   }
   else{
-    
+    console.log('no separation');
     $('.blast').each(function(index){
       var increment = index * howmuch
       var thing = increment + 'px';
       $(this).css('top', thing );
     });
-    $('.text').toggleClass('separated');
+    // $('.text').toggleClass('separated');
     $('.text').attr('contenteditable','false');
 
   }
   // $(".blast").each(function(index){
   //   $(this).removeClass('active');
   // });
+  $('.text').toggleClass('separated');
 }
 
 
 $( document ).ready(function() {
-  $('.blast').mouseenter(function(){
-    var thisId = $(this).attr('id');
-    var thisIndex = str.split('-')[1];
-    console.log(thisIndex);
+  var count = 1;
+  if (count == 1){
+    $(".container p").blast({ delimiter: "sentence", tag: "span", customClass: "num", generateIndexID: true  });
+    count++;
+  }
+  $( ".text .num" ).mouseenter(function() {
+    console.log('Ryan');
+  });
+  
+  // $('.blast').mouseenter(function(){
+  //   var thisId = $(this).attr('id');
+  //   var thisIndex = str.split('-')[1];
+   
     
-    $('.blast').each(function(index){
-      if (thatIndex >= thisIndex ){
-        $(this).css('top', '5px' );
-      }
-      
-    });
-  })
+  //   // $('.blast').each(function(index){
+  //   //   if (thatIndex >= thisIndex ){
+  //   //     $(this).css('top', '5px' );
+  //   //   }
+  //   // });
+  // })
 
 
   let keysPressed = {};
