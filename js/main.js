@@ -513,7 +513,6 @@ function clear(){
 function sentence(howmuch) {
   
   if($('.text').hasClass('separated')){
-    console.log('yes separation');
     $('.blast').each(function(){
         $(this).css('top','1px');
         $(this).css('left','1px');
@@ -522,7 +521,6 @@ function sentence(howmuch) {
     $('.text').attr('contenteditable','true');
   }
   else{
-    console.log('no separation');
     $('.blast').each(function(index){
       var increment = index * howmuch
       var thing = increment + 'px';
@@ -545,9 +543,30 @@ $( document ).ready(function() {
     $(".container p").blast({ delimiter: "sentence", tag: "span", customClass: "num", generateIndexID: true  });
     count++;
   }
-  $( ".text .num" ).mouseenter(function() {
-    console.log('Ryan');
-  });
+  // $( ".blast.num" ).mouseenter(function() {
+  //   var thisId = $(this).attr('id');
+  //   var thisIndex = thisId.split('-')[1];
+    
+   
+    
+  //   $('.blast').each(function(index){
+  //     var thatId = $(this).attr('id');
+  //     var thatIndex = thatId.split('-')[1];
+  //     console.log(thatIndex);
+  //     if (thatIndex > thisIndex || thatIndex == thisIndex){
+  //       var increment = 5 * (thatIndex * 5)
+  //       var thing = increment + 'px';
+  //       $(this).css('top', thing );
+  //       console.log(thing);
+  //     }
+  //   });
+  // });
+  // $( ".blast.num" ).mouseleave(function() {
+  //   $('.blast').each(function(index){
+      
+  //       $(this).css('top', '1px');
+  //   });
+  // });
   
   // $('.blast').mouseenter(function(){
   //   var thisId = $(this).attr('id');
