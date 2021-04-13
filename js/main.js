@@ -478,7 +478,7 @@
 
 /* In <=IE7, when Blast is called on the same element more than once with opts.stripHTMLTags=false, calls after the first may not target the entirety of the element and/or may
  inject excess spacing between inner text parts due to <=IE7's faulty node normalization. */
- 
+
 
 
 $(window).scroll(function () {
@@ -518,7 +518,7 @@ $( document ).ready(function() {
     }
   })
 
-  $(".blastable").blast({ delimiter: "sentence", tag: "span" });
+  $(".container p").blast({ delimiter: "sentence", tag: "span" });
 
   $("#party").click(function(e){    
     e.preventDefault();
