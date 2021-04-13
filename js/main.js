@@ -491,6 +491,7 @@ $(window).resize(function () {
 
 });
 function sentence(howmuch) {
+  
   $('.text').toggleClass('separated');
   $(".blast").each(function(index){
     $(this).removeClass('active');
@@ -499,30 +500,112 @@ function sentence(howmuch) {
     var increment = (index + 1) * howmuch
     var topper = $(this).css("top");
     var thing = increment + 'px';
+    var number = (Math.floor(Math.random() * (100 - 1 + 1) + 1));
     
     if(topper == '1px'){
       $(this).css('top', thing );
+      // $(this).css('left', number);
       // $(this).prepend('<span class="to-remove">what?</span>');
     }
     else {
       $(this).css("top",'1px');
+      $(this).css("left",'1px');
       // $('.to-remove').hide().remove();
     } 
   });
 }
 
+function save(){
+  // check the new text
+  var newText2 = $('.text').html();
+  // overwrite the old text
+  localStorage.setItem('text', newText2);
+  $('#save').html('Saving...');
+  setTimeout(function () {
+    $('#save').html('Save');
+  }, 1000);
+}
+function load(){
+  $('.text').html(localStorage.getItem('text'));
+}
+function clear(){
+  localStorage.clear();
+}
+
+
 $( document ).ready(function() {
-  document.addEventListener("keydown", function(event) {
-    if (event.key === 'e') {
-      sentence(40);
-    }
-  })
+  if(localStorage.getItem('text')){
+    $('.text').html(localStorage.getItem('text'));
+  }
+  
+  
+
+  $('.text').on('blur', function() {
+      save();
+  });
 
   $(".container p").blast({ delimiter: "sentence", tag: "span" });
+
+  let keysPressed = {};
+ 
+  document.addEventListener('keydown', (event) => {
+      keysPressed[event.key] = true;
+  
+      if (keysPressed['Control'] && event.key == 'e') {
+          sentence(40);
+      }
+
+      if (keysPressed['Control'] && event.key == 'p') {
+        $('.text').toggleClass('particulate');
+    }
+  });
+  
+ 
+ document.addEventListener('keyup', (event) => {
+    delete keysPressed[event.key];
+ });
+
+
+
+//to store the reference to the timer
+var timer;
+$('.text').keyup(function () {
+    //clear the previous timer
+    clearTimeout(timer);
+    //create a new timer with a delay of 2 seconds, if the keyup is fired before the 2 secs then the timer will be cleared
+    timer = setTimeout(function () {
+      $(".container p").blast({ delimiter: "sentence", tag: "span" });
+    }, 2000);
+});
+  
+  
+   
+
+  
 
   $("#party").click(function(e){    
     e.preventDefault();
     sentence(40);
+  });
+
+  $("#particulate").click(function(e){    
+    e.preventDefault();
+    $('.text').toggleClass('particulate');
+  });
+  
+
+  $("#save").click(function(e){    
+    e.preventDefault();
+    save();
+  });
+  $("#load").click(function(e){    
+    e.preventDefault();
+    load();
+  });
+  $("#clear").click(function(e){    
+    e.preventDefault();
+    clear();
+    location.reload();
   });
 
   $(".blast").click(function(){

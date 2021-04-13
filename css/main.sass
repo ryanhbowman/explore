@@ -42,7 +42,8 @@ body
 .blast
   position: relative
   top: 1px
-  transition: top .5s ease-in-out,  background .2s
+  left: 1px
+  transition: left .5s ease-in-out,top .5s ease-in-out,  background .2s
   padding: 0
   // &:first-child
     // padding: 0
@@ -64,6 +65,30 @@ body
       padding: 6px 0 4px
       &:hover
         border-bottom: none
+.particulate
+  .blast 
+    &:hover
+      margin: 5px 0
+.container
+  max-width: 550px
+  width: 100%
+  padding: 1.5em
+  margin: 0 auto
+  overflow: auto
+  height: 100%
+  max-height: 900px
+  position: absolute
+  left: 50%
+  top: 50%
+  transform: translateX(-50%) translateY(-50%)
+  &.container--small
+    max-width: 400px
+  &.container--padding
+    padding: 4em 1.5em
+  &:focus
+    outline: none
+
+
 
 a
   text-decoration: none
@@ -168,22 +193,6 @@ h6
   &:hover
     background: rgba(0,0,0,.7)
 
-.container
-  max-width: 550px
-  width: 100%
-  padding: 1.5em
-  margin: 0 auto
-  overflow: auto
-  height: 100%
-  max-height: 900px
-  position: absolute
-  left: 50%
-  top: 50%
-  transform: translateX(-50%) translateY(-50%)
-  &.container--small
-    max-width: 400px
-  &.container--padding
-    padding: 4em 1.5em
 .cf:before,.cf:after
   content: " "
   display: table
