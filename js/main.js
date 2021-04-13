@@ -490,40 +490,18 @@ $(window).resize(function () {
   
 
 });
-function sentence(howmuch) {
-  
-  $('.text').toggleClass('separated');
-  $(".blast").each(function(index){
-    $(this).removeClass('active');
-  });
-  $(".blast").each(function(index){
-    var increment = (index + 1) * howmuch
-    var topper = $(this).css("top");
-    var thing = increment + 'px';
-    var number = (Math.floor(Math.random() * (100 - 1 + 1) + 1));
-    
-    if(topper == '1px'){
-      $(this).css('top', thing );
-      // $(this).css('left', number);
-      // $(this).prepend('<span class="to-remove">what?</span>');
-    }
-    else {
-      $(this).css("top",'1px');
-      $(this).css("left",'1px');
-      // $('.to-remove').hide().remove();
-    } 
-  });
-}
+
 
 function save(){
   // check the new text
+  // $(".container p").blast({ delimiter: "sentence", tag: "span" });
   var newText2 = $('.text').html();
   // overwrite the old text
   localStorage.setItem('text', newText2);
   $('#save').html('Saving...');
   setTimeout(function () {
     $('#save').html('Save');
-  }, 1000);
+  }, 500);
 }
 function load(){
   $('.text').html(localStorage.getItem('text'));
@@ -532,19 +510,48 @@ function clear(){
   localStorage.clear();
 }
 
+function sentence(howmuch) {
+  $(".container p").blast({ delimiter: "sentence", tag: "span",customClass: "num", generateIndexID: true  });
+  if($('.text').hasClass('separated')){
+    
+    $('.blast').each(function(){
+        $(this).css('top','1px');
+        $(this).css('left','1px');
+    });
+    $('.text').toggleClass('separated');
+    $('.text').attr('contenteditable','true');
+  }
+  else{
+    
+    $('.blast').each(function(index){
+      var increment = index * howmuch
+      var thing = increment + 'px';
+      $(this).css('top', thing );
+    });
+    $('.text').toggleClass('separated');
+    $('.text').attr('contenteditable','false');
+
+  }
+  // $(".blast").each(function(index){
+  //   $(this).removeClass('active');
+  // });
+}
+
 
 $( document ).ready(function() {
-  if(localStorage.getItem('text')){
-    $('.text').html(localStorage.getItem('text'));
-  }
-  
-  
+  $('.blast').mouseenter(function(){
+    var thisId = $(this).attr('id');
+    var thisIndex = str.split('-')[1];
+    console.log(thisIndex);
+    
+    $('.blast').each(function(index){
+      if (thatIndex >= thisIndex ){
+        $(this).css('top', '5px' );
+      }
+      
+    });
+  })
 
-  $('.text').on('blur', function() {
-      save();
-  });
-
-  $(".container p").blast({ delimiter: "sentence", tag: "span" });
 
   let keysPressed = {};
  
@@ -565,24 +572,6 @@ $( document ).ready(function() {
     delete keysPressed[event.key];
  });
 
-
-
-//to store the reference to the timer
-var timer;
-$('.text').keyup(function () {
-    //clear the previous timer
-    clearTimeout(timer);
-    //create a new timer with a delay of 2 seconds, if the keyup is fired before the 2 secs then the timer will be cleared
-    timer = setTimeout(function () {
-      $(".container p").blast({ delimiter: "sentence", tag: "span" });
-    }, 2000);
-});
-  
- 
-   
-
-  
-
   $("#party").click(function(e){    
     e.preventDefault();
     sentence(40);
@@ -593,6 +582,15 @@ $('.text').keyup(function () {
     $('.text').toggleClass('particulate');
   });
   
+//local storage
+
+  if(localStorage.getItem('text')){
+    $('.text').html(localStorage.getItem('text'));
+  }
+
+  $('.text').on('blur', function() {
+      save();
+  });
 
   $("#save").click(function(e){    
     e.preventDefault();
@@ -608,16 +606,28 @@ $('.text').keyup(function () {
     location.reload();
   });
 
-  $(".blast").click(function(){
+  //to store the reference to the timer
+// var timer;
+// $('.text').keyup(function () {
+//     //clear the previous timer
+//     clearTimeout(timer);
+//     //create a new timer with a delay of 2 seconds, if the keyup is fired before the 2 secs then the timer will be cleared
+//     timer = setTimeout(function () {
+//       $(".container p").blast({ delimiter: "sentence", tag: "span" });
+//     }, 2000);
+// });
+  
+
+  // $(".blast").click(function(){
     
-    if($(this).hasClass('active')){
-      $(this).removeClass('active');
-    }
-    else {
-      $(".blast").each(function(index){
-        $(this).removeClass('active');
-      });
-      $(this).addClass('active');
-    }
-  })
+  //   if($(this).hasClass('active')){
+  //     $(this).removeClass('active');
+  //   }
+  //   else {
+  //     $(".blast").each(function(index){
+  //       $(this).removeClass('active');
+  //     });
+  //     $(this).addClass('active');
+  //   }
+  // })
 }); //end document ready
