@@ -536,8 +536,23 @@ function sentence(howmuch) {
   $('.text').toggleClass('separated');
 }
 
+function wordcount(){
+  var cont = $('.text').html();
+  cont = cont.replace(/<[^>]*>/g," ");
+  cont = cont.replace(/\s+/g, ' ');
+  cont = cont.trim();
+  var n = cont.split(" ").length;
+  $('.count').text(n);
+  
+  var blasts = $('.blast').length;
+  var perSentence = n / blasts;
+  
+  console.log(perSentence);
+  $('.per').text(perSentence.toFixed(0));
+}
 
 $( document ).ready(function() {
+  wordcount();
   var count = 1;
   if (count == 1){
     $(".container p").blast({ delimiter: "sentence", tag: "span", customClass: "num", generateIndexID: true  });
@@ -585,6 +600,8 @@ $( document ).ready(function() {
  
   document.addEventListener('keydown', (event) => {
       keysPressed[event.key] = true;
+
+      wordcount();
   
       if (keysPressed['Control'] && event.key == 'e') {
           sentence(40);
